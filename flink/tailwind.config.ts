@@ -12,3 +12,15 @@ export default {
   },
   plugins: [],
 } satisfies Config;
+
+module.exports = {
+  content: ["./src/**/*.tsx"],
+  theme: {
+    extend: {
+      height: {
+        '30vh': '30vh',
+      },
+    },
+  },
+  plugins: [],
+} satisfies Config;

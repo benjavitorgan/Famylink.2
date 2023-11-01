@@ -440,14 +440,15 @@ export default function NewAccounts() {
               <select
                 className="w-full px-4 py-2 border-[2.5px] border-blue-700 rounded-md outline-none focus:border-blue-700 focus:text-black transition duration-200"
                 id="Role"
+                placeholder=""
                 onChange={(e) => {
                   const selectedRole = e.target.value;
                   handleChangeRole(selectedRole);
                 }}
               >
-                <option value="OP">OP</option>
-                <option value="FM">FM</option>
-                <option value="NS">NS</option>
+                <option value="OP" content="">Persona mayor</option>
+                <option value="FM">Miembro familiar</option>
+                <option value="NS">Enfermero / Medico</option>
               </select>
               <span className={`text-1xl text-black bg-white text-opacity-75 absolute left-4 -top-[1.5px] transition duration-200 ${isRoleMoved || Role !== '' ? 'transform -translate-y-[20.5px] text-opacity-100 text-sm text-blue-700' : ''}`}>
               &nbsp;Rol&nbsp;

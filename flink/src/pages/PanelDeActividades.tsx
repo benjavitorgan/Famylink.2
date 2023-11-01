@@ -75,7 +75,36 @@ const Navbar = () => {
   );
 };
 
+interface Sugerencia {
+  dniPaciente: string;
+  dniMedico: string;
+  sugerencia: string;
+  nombreCreador: string;
+}
 const PanelActs = () => {
+
+  const[dni, setDni] = useState('');
+  const[dniPaciente, setDniP] = useState('');
+  const[dniMedico, setDniM] = useState('');
+  const[sugerencia, setSugerencia] = useState('');
+  const[nombreCreador, setNombreC] = useState('');
+
+  const handleBuscarPersona = () => {
+    console.log(dni);
+  }
+
+  const handleCrearSugerencia = () => {
+    if (dniPaciente && dniMedico) {
+      const nuevaSugerencia: Sugerencia = {
+        dniPaciente,
+        dniMedico,
+        sugerencia,
+        nombreCreador,
+      };
+      console.log(nuevaSugerencia);
+    }
+  }
+
   return (
     <main>
       <svg
@@ -88,11 +117,67 @@ const PanelActs = () => {
         <path d="M-116 190.971C-116 190.971 100.87 84.8151 190.501 76.4756C298.712 66.4081 353.52 144.484 462 138.011C570.751 131.521 628.361 78.2571 736.5 64.9534C914.667 43.0359 1010 217.198 1171 170.291C1223.65 154.95 1286.69 119.427 1341.5 119.427C1414.5 119.427 1599.68 88.0765 1599.68 88.0765" stroke="#85DFF3" strokeWidth="38"/>
         <path d="M-66 159.246C-66 159.246 76.9074 51.0221 171.333 43.6339C285.334 34.7139 341.799 109.738 456.028 104.257C570.54 98.7623 636.526 43.7898 750.5 31.7764C935.5 22.6974 992.769 205.661 1167 137.585C1224.5 115.118 1305 75.041 1366 75.041C1451.72 75.041 1576.68 43.6339 1576.68 43.6339" stroke="#4151DA" strokeWidth="53"/>
       </svg>
-      <Navbar />
-      <div className="flex flex-col items-center justify-center h-screen border-t-blue-600">
-        <h1 className="py-5 text-3xl">Panel de actividades</h1>
-        <div className="w-86 px-16 py-6  bg-white shadow-xl shadow-grey border-2 border-blue-700  rounded"> 
-          <a href="" className="text-black text-xl font-thin">Crear un nuevo panel de actividades</a> 
+      <Navbar/>
+      <div className= "flex space-x-4 flex-col items-center justify-center h-screen border-t-blue-600">
+        <h1 className="py-5 text-3xl"> Ingrese el dni</h1> 
+        <div className="flex space-x-4">
+          <input
+            type="text"
+            placeholder="DNI"
+            value={dni}
+            onChange={(e) => setDni(e.target.value)}
+            className="w-64 p-2 border-2 text-xl border-gray-300 h-10"
+          />
+          <button onClick={handleBuscarPersona} className="w-32 h-10 p-2 bg-blue-700 text-white items-center justify-center">
+          Buscar
+          </button>
+      </div>
+       <div className="flex flex-col items-center justify-center h-32 border-t-blue-600">
+            <div className="w-86 px-16 py-6  bg-white shadow-xl shadow-grey border-2 border-blue-700  rounded">
+              <a href="/Paneles" className="text-black text-xl font-thin">Crear nuevas actividades</a>
+            </div>
+          </div>
+        </div>
+        <div className="gap-4-px-20 py-6 bg-white shadow-xl border-2 border-blue-700 rounded justify-center">
+              <h1 className="text-3xl mb-4 ml-10 mr-1">Sugerir una actividad</h1>
+          <div className="grid grid-cols-2 gap-4">
+          <div className="col-span-1">
+            <input
+              type="text"
+              placeholder="Dni del paciente"
+              value={dniPaciente}
+              onChange={(e) => setDniP(e.target.value)}
+              className="w-full p-2 border-2 text-xl border-gray-300"
+            />
+          </div>
+          <div className="col-span-1">
+            <input
+              type="text"
+              placeholder="Dni del medico a cargo"
+              value={dniMedico}
+              onChange={(e) => setDniM(e.target.value)}
+              className="w-full p-2 border-2 text-xl border-gray-300"
+            />
+          </div>
+          <div className="col-span-1">
+            <input
+              type="text"
+              placeholder="Describa la sugerencia que desea crear"
+              value={sugerencia}
+              onChange={(e) => setSugerencia(e.target.value)}
+              className="w-full p-2 border-2 text-xl border-gray-300"
+            />
+          </div>
+          <div className="col-span-1">
+            <input
+              type="text"
+              placeholder="Ingrese su nombre y apellido"
+              value={nombreCreador}
+              onChange={(e) => setNombreC(e.target.value)}
+              className="w-full p-2 border-2 text-xl border-gray-300"
+            />
+          </div>
+          <button onClick={handleCrearSugerencia} className="w-32 h-10 p-2 bg-blue-700 text-white items-center justify-center"> Crear sugerencia</button>
         </div>
       </div>
     </main>

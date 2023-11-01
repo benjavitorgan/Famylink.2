@@ -14,6 +14,17 @@ model activities {
   date        String
   type        String
   dniPaciente String
+  desc        String
+  time        String
+}
+
+model suggests {
+  id          String @id @default(cuid())
+  dniPaciente String
+  dniMedico   String
+  suggestion  String
+  isVerified  Boolean?
+  creatorName String?
 }
 
 enum UserType {
