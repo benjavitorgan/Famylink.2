@@ -44,19 +44,24 @@ export default function LogIn() {
   };
 
   const handleLogin = async () => {
-    await signIn("credentials", {
-      email,
-      password: contraseña,
-      method: "signIn",
-      redirect: false,
-    }).then((response) => {
-      if (response?.ok) {
-        void router.push("/");
-      } else {
-        alert("No se pudo entrar");
+    try {
+      const response = await signIn("credentials", {
+        email,
+        password: contraseña,
+        method: "signIn",
+        redirect: false,
+      });  
+       if (response?.ok) {
+         void router.push("/PanelDeActividades"); // Redirect to the desired page
+       } else {
+         alert("No se pudo entrar");
       }
-    });
-  };
+      console.log (response);
+    } catch (error) {
+      console.error("Error:", error);
+      // Handle any errors that occur during the sign-in process
+    }
+  }
 
   return (
     <main>

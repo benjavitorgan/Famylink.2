@@ -58,7 +58,7 @@ const authOptions: NextAuthOptions = {
         }
 
         console.log(credentials);
-
+        
         const existingUser = await prisma.user.findUnique({
           where: {
             dni
