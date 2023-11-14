@@ -8,9 +8,9 @@ import {
 export const fetchinfoRouter = createTRPCRouter({
     buscarInfoOP: publicProcedure
         .input(z.object({ dni: z.string(), nombre: z.string() }))
-        .query(async ({ input, ctx }) => {
+        .mutation(async ({ input, ctx }) => {
             
-            const { dni, nombre } = input;
+            const { dni } = input;
             
 
             if (!dni) {
@@ -20,6 +20,14 @@ export const fetchinfoRouter = createTRPCRouter({
             const info = await ctx.prisma.user.findMany ({
                 where: {
                     dni: dni
+                }, select: {
+                    bloodType: true,
+                    sickness: true,
+                    age: true,
+                    dni: true,
+                    name: true,
+                    role: true
+
                 }
             }); 
 

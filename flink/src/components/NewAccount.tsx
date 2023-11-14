@@ -15,7 +15,6 @@ import router from "next/router";
 export default function NewAccounts() {
   const [email, setEmail] = useState('');
   const [emailValido, setEmailValido] = useState(true);
-  
   const [contraseña, setContraseña] = useState('');
   const [contraseñaValida, setContraseñaValida] = useState(true);
   const [confirmarContraseña, setConfirmarContraseña] = useState('');

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image'
-
+import { api } from "src/utils/api";
+import { actionAsyncStorage } from 'next/dist/client/components/action-async-storage.external';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -81,16 +82,82 @@ interface Sugerencia {
   sugerencia: string;
   nombreCreador: string;
 }
+
+interface Evento {
+  nombre: string;
+  dniPaciente: string;
+  fecha: string;
+  hora: string;
+  tipo: string;
+  descripcion: string;
+}
+
+interface SugerenciaEncontrada {
+  dniMedico: string;
+  sugerencia: string;
+  nombreCreador: string;
+  isVerified: boolean;
+}
 const PanelActs = () => {
 
-  const[dni, setDni] = useState('');
+  const[dniPrincipal, setDni] = useState('');
   const[dniPaciente, setDniP] = useState('');
   const[dniMedico, setDniM] = useState('');
   const[sugerencia, setSugerencia] = useState('');
   const[nombreCreador, setNombreC] = useState('');
+  const { mutate: crearSugerencia } = api.event.crearSugerencia.useMutation();
+  const { mutate: buscarEvento } = api.event.buscarEvento.useMutation();
+  const { mutate: buscarSugerencia } = api.event.buscarSugerencia.useMutation();
+  const { mutate: VerifySuggest } = api.event.verificarSugerencia.useMutation();
+
+
+  const handleVerifySuggest = () => {
+    VerifySuggest ({
+      dniSug: ""    //CORREGIR
+    }, {
+      onSuccess: () => {
+        console.log("Verificada");
+      }
+    })
+  }
 
   const handleBuscarPersona = () => {
-    console.log(dni);
+    if (dniPrincipal) {
+      buscarEvento ({
+        dni: dniPrincipal
+      }, {
+        onSuccess: (act) => {
+          if (act.length > 0) {
+            
+            const nuevoEventoEncontrado: Evento = {
+              nombre: "",
+              dniPaciente: "",
+              fecha: "",
+              hora: "",
+              tipo: "",
+              descripcion: "",
+            }
+          }
+        },
+        onError: (err) => {
+          console.log(err);
+        }
+      })
+      buscarSugerencia ({
+        dni: dniPrincipal
+      }, {
+        onSuccess: (sug) => {
+          if (sug.length > 0) {
+            const nuevaSugerenciaEncontrada: SugerenciaEncontrada = {
+              dniMedico: "",
+              sugerencia: "",
+              nombreCreador: "",
+              isVerified: false,
+            }
+          }
+        }
+      })
+    }
   }
 
   const handleCrearSugerencia = () => {
@@ -101,7 +168,20 @@ const PanelActs = () => {
         sugerencia,
         nombreCreador,
       };
-      console.log(nuevaSugerencia);
+      crearSugerencia({
+        dniMedico: dniMedico,
+        dniPaciente: dniPaciente,
+        suggestion: sugerencia,
+        creatorName: nombreCreador,
+        isVerified: false
+      }, {
+        onSuccess: () => {
+          console.log("Bien");
+        },
+        onError: (err) => {
+          console.log(err);
+        }
+      })
     }
   }
 
@@ -123,13 +203,16 @@ const PanelActs = () => {
         <div className="flex space-x-4">
           <input
             type="text"
-            placeholder="DNI"
-            value={dni}
+            placeholder="Dni del familiar"
+            value={dniPrincipal}
             onChange={(e) => setDni(e.target.value)}
             className="w-64 p-2 border-2 text-xl border-gray-300 h-10"
           />
           <button onClick={handleBuscarPersona} className="w-32 h-10 p-2 bg-blue-700 text-white items-center justify-center">
           Buscar
+          </button>
+          <button onClick={handleVerifySuggest} className="w-32 h-10 p-2 bg-blue-700 text-white items-center justify-center">
+            Verify
           </button>
       </div>
        <div className="flex flex-col items-center justify-center h-32 border-t-blue-600">

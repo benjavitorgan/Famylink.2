@@ -8,18 +8,15 @@ import { signIn } from "next-auth/react";
 import router from "next/router";
 
 export default function LogIn() {
-  const [email, setEmail] = useState('');
-  const [emailValido, setEmailValido] = useState(true);
+  const [dni, setDni] = useState('');
   const [contraseña, setContraseña] = useState('');
   const [contraseñaValida, setContraseñaValida] = useState(true);
-  const [isEmailMoved, setIsEmailMoved] = useState(false);
+  const [isDniMoved, setIsDniMoved] = useState(false);
   const [isContraseñaMoved, setIsContraseñaMoved] = useState(false);
 
   const handleChangeEmail = (event: ChangeEvent<HTMLInputElement>) => {
-    const nuevoEmail = event.target.value;
-    setEmail(nuevoEmail);
-    const esValido = validarEmail(nuevoEmail);
-    setEmailValido(esValido);
+    const nuevoDni = event.target.value;
+    setDni(nuevoDni);
   };
 
   const handleChangeContraseña = (event: ChangeEvent<HTMLInputElement>) => {
@@ -28,39 +25,47 @@ export default function LogIn() {
     setContraseñaValida(nuevaContraseña.length >= 8);
   };
 
-  const handleEmailInputClick = () => {
-    setIsEmailMoved(true);
+  const handleDniInputClick = () => {
+    setIsDniMoved(true);
     setIsContraseñaMoved(false);
   };
 
   const handleContraseñaInputClick = () => {
     setIsContraseñaMoved(true);
-    setIsEmailMoved(false);
+    setIsDniMoved(false);
   };
 
   const handleInputBlur = () => {
-    setIsEmailMoved(false);
+    setIsDniMoved(false);
     setIsContraseñaMoved(false);
   };
 
-  const handleLogin = async () => {
+  const handleLogin = async (event: Event | undefined) => {
+    event?.preventDefault();
     try {
+      console.log("Try");
       const response = await signIn("credentials", {
-        email,
-        password: contraseña,
-        method: "signIn",
-        redirect: false,
-      });  
-       if (response?.ok) {
-         void router.push("/PanelDeActividades"); // Redirect to the desired page
-       } else {
-         alert("No se pudo entrar");
+          email: "",
+          name: "",
+          password: contraseña,
+          method: "signIn",
+          redirect: false,
+          dni: dni,
+          role: "",
+          phoneNumber: "",
+          sickness: "",
+          bloodtype: "",
+          age: ""
+      }); if (response?.ok) {
+        console.log(response);
+        console.log ("Bienvenido");
+        void router.push("/PanelDeActividades");
+      } else {
+        alert("No se pudo entrar");
       }
-      console.log (response);
-    } catch (error) {
-      console.error("Error:", error);
-      // Handle any errors that occur during the sign-in process
-    }
+    } catch(error) {
+    console.error ("Error: ", error)
+     }
   }
 
   return (
@@ -81,7 +86,7 @@ export default function LogIn() {
       
     <div className="flex items-center justify-center h-screen border-t-blue-600">
       <div className="w-1/4 p-6 bg-white rounded shadow-xl shadow-grey">
-        <h2 className="font-semibold text-3xl mb-4 text-center">Iniciar sesión</h2>
+        <h2 className="font-semibold text-3xl mb-4 text-center">Iniciar sesiónA</h2>
         <form>
           <div className="mb-4">
             <div className="">
@@ -89,19 +94,18 @@ export default function LogIn() {
                 <label className="relative">
                   <input
                     className="w-full px-4 py-2 border-[2.5px] border-blue-700 rounded-md outline-none focus:border-blue-700 focus:text-black transition duration-200"
-                    type="email"
-                    id="email"
-                    onClick={handleEmailInputClick}
+                    type="text"
+                    id="dni"
+                    onClick={handleDniInputClick}
                     onBlur={handleInputBlur}
                     onChange={handleChangeEmail}
                   />
-                  {!emailValido && <p className="error-message text-red-600">El correo electrónico ingresado no es válido.</p>}
                   <span
                     className={`text-1xl text-black bg-white text-opacity-75 absolute left-4 -top-[1.5px] transition duration-200 ${
-                      isEmailMoved || email !== '' ? 'transform -translate-y-[20.5px] text-opacity-100 text-sm text-blue-700' : ''
+                      isDniMoved || dni !== '' ? 'transform -translate-y-[20.5px] text-opacity-100 text-sm text-blue-700' : ''
                     }`}
                   >
-                    &nbsp;Email&nbsp;
+                    &nbsp;Dni&nbsp;
                   </span>
                 </label>
               </div>
@@ -115,9 +119,6 @@ export default function LogIn() {
                     onBlur={handleInputBlur}
                     onChange={handleChangeContraseña}
                   />
-                  {!contraseñaValida && contraseña.length > 0 && (
-                    <p className="error-message text-red-600">La contraseña debe tener al menos 8 caracteres.</p>
-                  )}
                   <span
                     className={`text-1xl text-black bg-white text-opacity-75 absolute left-4 -top-[1.5px] transition duration-200 ${
                       isContraseñaMoved || contraseña !== '' ? 'transform -translate-y-[20.5px] text-opacity-100 text-sm text-blue-700' : ''
@@ -130,7 +131,7 @@ export default function LogIn() {
             </div>
           </div>
           <div className="flex flex-col items-center">
-            <button className="w-1/2 px-4 py-2 text-white bg-blue-700 rounded hover:bg-blue-600" type="submit" onClick={handleLogin}>
+            <button className="w-1/2 px-4 py-2 text-white bg-blue-700 rounded hover:bg-blue-600" type="submit" onClick={() => void handleLogin(event)}>
               Entrar
             </button>
             <label htmlFor="text" className="py-0">

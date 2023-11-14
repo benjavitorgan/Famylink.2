@@ -58,14 +58,14 @@ const authOptions: NextAuthOptions = {
         }
 
         console.log(credentials);
-        
+
         const existingUser = await prisma.user.findUnique({
           where: {
             dni
           }, 
           
         }); 
-
+        
         if (method === "signUp") {
           if (existingUser) {
             throw new Error('Este dni ya esta registrado');
@@ -88,8 +88,6 @@ const authOptions: NextAuthOptions = {
               age
              },
            });
-          console.log("ACA" + newUser);
-
           return newUser;
         }
 
@@ -97,7 +95,7 @@ const authOptions: NextAuthOptions = {
           throw new Error('Este email no esta registrado');
         }
 
-        const { password: hashedPassword } = existingUser as {
+        const {password: hashedPassword} = existingUser as {
           password: string;
         }
 
@@ -106,8 +104,10 @@ const authOptions: NextAuthOptions = {
         if (!validatedPassword) {
           throw new Error('Contraseña Incorrecta');
         }
-        return existingUser;
 
+        console.log (existingUser);
+        
+        return existingUser;
       }
     })
   ],

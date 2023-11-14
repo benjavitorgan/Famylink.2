@@ -1,6 +1,7 @@
 import { postRouter } from "~/server/api/routers/post";
 import { createTRPCRouter } from "~/server/api/trpc";
-
+import { eventRouter } from "./routers/event";
+import { fetchinfoRouter } from "./routers/info";
 /**
  * This is the primary router for your server.
  *
@@ -8,6 +9,8 @@ import { createTRPCRouter } from "~/server/api/trpc";
  */
 export const appRouter = createTRPCRouter({
   post: postRouter,
+  event: eventRouter,
+  info: fetchinfoRouter
 });
 
 // export type definition of API

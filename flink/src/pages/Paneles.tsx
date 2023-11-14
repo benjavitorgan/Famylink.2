@@ -32,6 +32,7 @@ const NuevaActividad = () => {
   const [dniPaciente, setDni] = useState<string>('');
   const [descripcion, setDesc] = useState<string>('');
   const [tipo, setTipo] = useState<string>('');
+  const { mutate: crearEvento } = api.event.crearEvento.useMutation();
 
   const handleCrearActividad = () => {
     if (dniPaciente && fecha) {
@@ -43,7 +44,21 @@ const NuevaActividad = () => {
         tipo,
         descripcion,
       };
-      console.log(nuevaActividad);
+      crearEvento({
+        event: nombre,
+        type: tipo,
+        date: fecha,
+        time: hora,
+        desc: descripcion,
+        dniPaciente: dniPaciente
+      }, {
+        onSuccess: () => {
+          console.log("Bien");
+        },
+        onError: (err) => {
+          console.log(err);
+        }
+      })
     }
   };
 
