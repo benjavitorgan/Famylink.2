@@ -25,7 +25,7 @@ interface Actividad {
 }
 
 const NuevaActividad = () => {
-  //const [actividades, setActividades] = useState<Actividad[]>([]);
+  const [actividades, setActividades] = useState<Actividad[]>([]);
   const [nombre, setNombre] = useState<string>('');
   const [fecha, setFecha] = useState<string>('');
   const [hora, setHora] = useState <string>('');
@@ -36,14 +36,6 @@ const NuevaActividad = () => {
 
   const handleCrearActividad = () => {
     if (dniPaciente && fecha) {
-      const nuevaActividad: Actividad = {
-        nombre,
-        dniPaciente,
-        fecha,
-        hora,
-        tipo,
-        descripcion,
-      };
       crearEvento({
         event: nombre,
         type: tipo,
@@ -60,6 +52,24 @@ const NuevaActividad = () => {
         }
       })
     }
+
+    const nuevaActividad: Actividad = {
+      nombre,
+      dniPaciente,
+      fecha,
+      hora,
+      tipo,
+      descripcion
+    }
+
+    setNombre("");
+    setDni("");
+    setFecha("");
+    setHora("");
+    setTipo("");
+    setDesc("");
+
+    setActividades ((prevActividades) => [...prevActividades, nuevaActividad])
   };
 
   /*
@@ -73,101 +83,296 @@ const NuevaActividad = () => {
     );
   };*/
   
-  
+  const [isNameMoved, setIsNameMoved] = useState(false);
+  const [isTypeMoved, setIsTypeMoved] = useState(false);
+  const [isDNIMoved, setIsDNIMoved] = useState(false);
+  const [isDescriptionMoved, setIsDescriptionMoved] = useState(false);
+  const [isDateMoved, setIsDateMoved] = useState(false);
+  const [isTimeMoved, setIsTimeMoved] = useState(false);
+
+
+
+
+  const handleInputBlur = () => {
+    setIsNameMoved(false);
+    setIsTypeMoved(false);
+    setIsDNIMoved(false);
+    setIsDescriptionMoved(false);
+    setIsDateMoved(false);
+    setIsTimeMoved(false);
+  };
+
+
+
+
+  const handleInputClick = (field: string) => {
+    setIsNameMoved(field === 'Name');
+    setIsTypeMoved(field === 'Type');
+    setIsDNIMoved(field === 'DNI');
+    setIsDescriptionMoved(field === 'Description');
+    setIsDateMoved(field === 'Date');
+    setIsTimeMoved(field === 'Time');
+  };
+
+
+
+
+  const handleChange = (field: string, value: string) => {
+    switch (field) {
+      case 'Name':
+        setNombre(value);
+        break;
+      case 'DNI':
+        setDni(value);
+        break;
+      case 'Type':
+        setTipo(value);
+        break;
+      case 'Date':
+        setFecha(value);
+        break;
+      case 'Time':
+        setHora(value);
+        break;
+      case 'Description':
+        setDesc(value);
+        break;
+      default:
+        break;
+    }
+  };
+
   
 
   return (
     <main>
-      <header className="bg-purple-700 py-5 px-6 text-3xl text-white text-center">
+      <header className="bg-purple-700 px-6 py-5 text-center text-3xl text-white">
         Panel de actividades
       </header>
-  
-      <div className="text-center py-5">
-        <h1 className="text-3xl">Crear una nueva actividad</h1>
-      </div>
-      <div className="px-20 py-6 bg-white shadow-xl border-2 border-blue-700 rounded">
-        <div className="grid grid-cols-2 gap-4">
-          <div className="col-span-1">
-            <input
-              type="text"
-              placeholder="Nombre"
-              value={nombre}
-              onChange={(e) => setNombre(e.target.value)}
-              className="w-full p-2 border-2 text-xl border-gray-300"
-            />
+
+
+
+
+      <div className="rounded border-2 border-grey-600 bg-white px-20 py-6 shadow-xl ">
+        <div className="grid grid-cols-2 gap-4 max-w-screen-md mx-auto ">
+          <div className="">
+            <div className="relative py-3">
+              <label className="relative">
+                <input
+                  className="w-full rounded-md border-[2.5px] border-blue-700 px-4 py-2 outline-none transition duration-200 focus:border-blue-700 focus:text-black"
+                  type="text"
+                  id="Name"
+                  onClick={() => handleInputClick('Name')}
+                  onBlur={handleInputBlur}
+                  onChange={(e) => {
+                    handleChange('Name', e.target.value);
+                  }}
+                  value={nombre}
+                />
+                <span
+                  className={`text-1xl absolute -top-[1.5px] left-4 bg-white text-black text-opacity-75 transition duration-200 ${
+                    isNameMoved || nombre !== ''
+                      ? '-translate-y-[20.5px] transform text-sm text-blue-700 text-opacity-100'
+                      : ''
+                  }`}
+                >
+                  &nbsp;Nombre&nbsp;
+                </span>
+              </label>
+            </div>
           </div>
-          <div className="col-span-1">
-            <input
-              type="text"
-              placeholder="DNI"
-              value={dniPaciente}
-              onChange={(e) => setDni(e.target.value)}
-              className="w-full p-2 border-2 text-xl border-gray-300"
-            />
+
+
+
+
+          <div className="">
+            <div className="relative py-3">
+              <label className="relative">
+                <input
+                  className="w-full rounded-md border-[2.5px] border-blue-700 px-4 py-2 outline-none transition duration-200 focus:border-blue-700 focus:text-black"
+                  type="text"
+                  id="DNI"
+                  onClick={() => handleInputClick('DNI')}
+                  onBlur={handleInputBlur}
+                  onChange={(e) => {
+                    handleChange('DNI', e.target.value);
+                  }}
+                  value={dniPaciente}
+                />
+                <span
+                  className={`text-1xl absolute -top-[1.5px] left-4 bg-white text-black text-opacity-75 transition duration-200 ${
+                    isDNIMoved || dniPaciente !== ''
+                      ? '-translate-y-[20.5px] transform text-sm text-blue-700 text-opacity-100'
+                      : ''
+                  }`}
+                >
+                  &nbsp;DNI&nbsp;
+                </span>
+              </label>
+            </div>
           </div>
-          <div className="col-span-1">
-            <input
-              type="text"
-              placeholder="Tipo"
-              value={tipo}
-              onChange={(e) => setTipo(e.target.value)}
-              className="w-full p-2 border-2 text-xl border-gray-300"
-            />
+
+
+
+
+          <div className="">
+            <div className="relative py-3">
+              <label className="relative">
+                <input
+                  className="w-full rounded-md border-[2.5px] border-blue-700 px-4 py-2 outline-none transition duration-200 focus:border-blue-700 focus:text-black"
+                  type="text"
+                  id="Type"
+                  onClick={() => handleInputClick('Type')}
+                  onBlur={handleInputBlur}
+                  onChange={(e) => {
+                    handleChange('Type', e.target.value);
+                  }}
+                  value={tipo}
+                />
+                <span
+                  className={`text-1xl absolute -top-[1.5px] left-4 bg-white text-black text-opacity-75 transition duration-200 ${
+                    isTypeMoved || tipo !== ''
+                      ? '-translate-y-[20.5px] transform text-sm text-blue-700 text-opacity-100'
+                      : ''
+                  }`}
+                >
+                  &nbsp;Tipo&nbsp;
+                </span>
+              </label>
+            </div>
           </div>
-          <div className="col-span-1 flex">
-          <div className="w-1/2">
-            <input
-              type="text"
-              placeholder="Fecha"
-              value={fecha}
-              onChange={(e) => setFecha(e.target.value)}
-              className="w-full p-2 border-2 text-xl border-gray-300"
-          />
-          </div>
-          <div className="w-1/2 pl-2">
-            <input
-              type="text"
-              placeholder="Hora"
-              value={hora}
-              onChange={(e) => setHora(e.target.value)}
-              className="w-full p-2 border-2 text-xl border-gray-300"
-          />
-          </div>
-          </div>
-          <div className="col-span-1">
-            <input
-              type="text"
-              placeholder="Descripcion"
-              value={descripcion}
-              onChange={(e) => setDesc(e.target.value)}
-              className="w-full h-20 p-2 border-2 text-xl border-gray-300"
-            />
-          </div>
-          <div className="col-span-1 text-right">
-            <button onClick={handleCrearActividad} className="w-1/2 h-20 p-4 bg-blue-700 text-white items-center justify-center">
-              Crear
-            </button>
+
+
+
+
+          <div className=" flex">
+            <div className="w-1/2">
+              <div className="relative py-3">
+                <label className="relative">
+                  <input
+                    className="w-full rounded-md border-[2.5px] border-blue-700 px-4 py-2 outline-none transition duration-200 focus:border-blue-700 focus:text-black"
+                    type="text"
+                    id="Date"
+                    onClick={() => handleInputClick('Date')}
+                    onBlur={handleInputBlur}
+                    onChange={(e) => {
+                      handleChange('Date', e.target.value);
+                    }}
+                    value={fecha}
+                  />
+                  <span
+                    className={`text-1xl absolute -top-[1.5px] left-4 bg-white text-black text-opacity-75 transition duration-200 ${
+                      isDateMoved || fecha !== ''
+                        ? '-translate-y-[20.5px] transform text-sm text-blue-700 text-opacity-100'
+                        : ''
+                    }`}
+                  >
+                    &nbsp;Fecha&nbsp;
+                  </span>
+                </label>
+              </div>
+            </div>
+
+
+
+
+            <div className="w-1/2 pl-2">
+              <div className="relative py-3">
+                <label className="relative">
+                  <input
+                    className="w-full rounded-md border-[2.5px] border-blue-700 px-4 py-2 outline-none transition duration-200 focus:border-blue-700 focus:text-black"
+                    type="text"
+                    id="Time"
+                    onClick={() => handleInputClick('Time')}
+                    onBlur={handleInputBlur}
+                    onChange={(e) => {
+                      handleChange('Time', e.target.value);
+                    }}
+                    value={hora}
+                  />
+                  <span
+                    className={`text-1xl absolute -top-[1.5px] left-4 bg-white text-black text-opacity-75 transition duration-200 ${
+                      isTimeMoved || hora !== ''
+                        ? '-translate-y-[20.5px] transform text-sm text-blue-700 text-opacity-100'
+                        : ''
+                    }`}
+                  >
+                    &nbsp;Hora&nbsp;
+                  </span>
+                </label>
+              </div>
+            </div>
           </div>
         </div>
+        <div className="flex max-w-screen-md mx-auto items-center">
+  <div className="w-3/4 py-3 pr-2">
+    <label className="relative">
+      <input
+        className="w-full rounded-md border-[2.5px] border-blue-700 px-4 py-5 outline-none transition duration-200 focus:border-blue-700 focus:text-black"
+        type="text"
+        id="Description"
+        onClick={() => handleInputClick('Description')}
+        onBlur={handleInputBlur}
+        onChange={(e) => {
+          handleChange('Description', e.target.value);
+        }}
+        value={descripcion}
+      />
+      <span
+        className={`text-1xl absolute -top-[1.5px] left-4 bg-white text-black text-opacity-75 transition duration-200 ${
+          isDescriptionMoved || descripcion !== ''
+            ? '-translate-y-[32.5px] transform text-sm text-blue-700 text-opacity-100'
+            : ''
+        }`}
+      >
+        &nbsp;Descripcion&nbsp;
+      </span>
+    </label>
+  </div>
+  <div className="w-1/4 ">
+    <button
+      onClick={handleCrearActividad}
+      className="h-full w-full items-center justify-center bg-blue-700 p-4 text-white bg-center"
+    >
+      Crear
+    </button>
+  </div>
+</div>
+        {/* Mostrar la lista de actividades */}
+        <div className="mt-6">
+          <h2 className="mb-2 text-xl font-semibold">Lista de Actividades</h2>
+          <ul>
+            {actividades.map((actividad, index) => (
+              <li
+                key={index}
+                className="mb-4 flex flex-col rounded border p-4 md:flex-row md:items-center"
+              >
+                {/* Detalles de la actividad */}
+                <div className="md:mr-4 md:w-1/6">
+                  <strong>Hora:</strong> {actividad.hora}
+                </div>
+                <div className="md:mr-4 md:w-1/6">
+                  <strong>Fecha:</strong> {actividad.fecha}
+                </div>
+                <div className="grid-cols w-1/6">
+                  <strong>Nombre:</strong> {actividad.nombre}
+                  <br />
+                  <strong>DNI:</strong> {actividad.dniPaciente}
+                  <br />
+                  <strong>Tipo:</strong> {actividad.tipo}
+                  <br />
+                </div>
+                <div className="md:mr-4 md:w-1/6">
+                  <strong>Descripción:</strong> {actividad.descripcion}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
-      {/* <div className="py-3"></div> */}
-      {/* <div className="px-16">
-        {actividades.map((actividad, index) => (
-          <div
-            key={index}
-            className={`flex justify-between items-center py-2 px-5 bg-gray-100 border-t border-b border-gray-300 ${
-              actividad.completada ? 'line-through text-green-600 text-2xl' : ''
-            }`}
-          >
-            <div>
-              {actividad.fecha}: {actividad.nombre}
-            </div>
-            <input type="checkbox" checked={actividad.completada} onChange={() => handleCompletarActividad(index)} className="w-5 h-5" />
-          </div>
-        ))}
-      </div> */}
     </main>
   );
 };
+
 
 export default NuevaActividad;

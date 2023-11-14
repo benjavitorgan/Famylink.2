@@ -76,13 +76,6 @@ const Navbar = () => {
   );
 };
 
-interface Sugerencia {
-  dniPaciente: string;
-  dniMedico: string;
-  sugerencia: string;
-  nombreCreador: string;
-}
-
 interface Evento {
   nombre: string;
   dniPaciente: string;
@@ -111,24 +104,15 @@ const PanelActs = () => {
   const { mutate: VerifySuggest } = api.event.verificarSugerencia.useMutation();
 
 
-  const handleVerifySuggest = () => {
-    VerifySuggest ({
-      dniSug: ""    //CORREGIR
-    }, {
-      onSuccess: () => {
-        console.log("Verificada");
-      }
-    })
-  }
+
 
   const handleBuscarPersona = () => {
     if (dniPrincipal) {
       buscarEvento ({
         dni: dniPrincipal
       }, {
-        onSuccess: (act) => {
-          if (act.length > 0) {
-            
+        onSuccess: (data) => {
+          if (data.length > 0) {
             const nuevoEventoEncontrado: Evento = {
               nombre: "",
               dniPaciente: "",
@@ -162,12 +146,6 @@ const PanelActs = () => {
 
   const handleCrearSugerencia = () => {
     if (dniPaciente && dniMedico) {
-      const nuevaSugerencia: Sugerencia = {
-        dniPaciente,
-        dniMedico,
-        sugerencia,
-        nombreCreador,
-      };
       crearSugerencia({
         dniMedico: dniMedico,
         dniPaciente: dniPaciente,
@@ -210,9 +188,6 @@ const PanelActs = () => {
           />
           <button onClick={handleBuscarPersona} className="w-32 h-10 p-2 bg-blue-700 text-white items-center justify-center">
           Buscar
-          </button>
-          <button onClick={handleVerifySuggest} className="w-32 h-10 p-2 bg-blue-700 text-white items-center justify-center">
-            Verify
           </button>
       </div>
        <div className="flex flex-col items-center justify-center h-32 border-t-blue-600">
