@@ -171,132 +171,176 @@ const PanelActs = () => {
   return (
     <main>
       <svg
-        className="absolute top-0 left-0 z-10"
-        viewBox="0 0 1366 209" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M1364 0H-2V72.6316H1364V0Z" fill="#7E22CE"/>
-        <path d="M1364 46.4036H956V127.105H1364V46.4036Z" fill="#7E22CE"/>
-        <path d="M552 31.272H329V111.974H552V31.272Z" fill="#7E22CE"/>
-        <path d="M73 31.272H-2V111.974H73V31.272Z" fill="#7E22CE"/>
-        <path d="M-116 190.971C-116 190.971 100.87 84.8151 190.501 76.4756C298.712 66.4081 353.52 144.484 462 138.011C570.751 131.521 628.361 78.2571 736.5 64.9534C914.667 43.0359 1010 217.198 1171 170.291C1223.65 154.95 1286.69 119.427 1341.5 119.427C1414.5 119.427 1599.68 88.0765 1599.68 88.0765" stroke="#85DFF3" strokeWidth="38"/>
-        <path d="M-66 159.246C-66 159.246 76.9074 51.0221 171.333 43.6339C285.334 34.7139 341.799 109.738 456.028 104.257C570.54 98.7623 636.526 43.7898 750.5 31.7764C935.5 22.6974 992.769 205.661 1167 137.585C1224.5 115.118 1305 75.041 1366 75.041C1451.72 75.041 1576.68 43.6339 1576.68 43.6339" stroke="#4151DA" strokeWidth="53"/>
+        className="absolute left-0 top-0 z-10"
+        viewBox="0 0 1366 209"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M1364 0H-2V72.6316H1364V0Z" fill="#7E22CE" />
+        <path d="M1364 46.4036H956V127.105H1364V46.4036Z" fill="#7E22CE" />
+        <path d="M552 31.272H329V111.974H552V31.272Z" fill="#7E22CE" />
+        <path d="M73 31.272H-2V111.974H73V31.272Z" fill="#7E22CE" />
+        <path
+          d="M-116 190.971C-116 190.971 100.87 84.8151 190.501 76.4756C298.712 66.4081 353.52 144.484 462 138.011C570.751 131.521 628.361 78.2571 736.5 64.9534C914.667 43.0359 1010 217.198 1171 170.291C1223.65 154.95 1286.69 119.427 1341.5 119.427C1414.5 119.427 1599.68 88.0765 1599.68 88.0765"
+          stroke="#85DFF3"
+          strokeWidth="38"
+        />
+        <path
+          d="M-66 159.246C-66 159.246 76.9074 51.0221 171.333 43.6339C285.334 34.7139 341.799 109.738 456.028 104.257C570.54 98.7623 636.526 43.7898 750.5 31.7764C935.5 22.6974 992.769 205.661 1167 137.585C1224.5 115.118 1305 75.041 1366 75.041C1451.72 75.041 1576.68 43.6339 1576.68 43.6339"
+          stroke="#4151DA"
+          strokeWidth="53"
+        />
       </svg>
-      <Navbar/>
-      <div className= "flex space-x-4 flex-col items-center justify-center h-screen border-t-blue-600">
-        <h1 className="py-5 text-3xl"> Ingrese el dni</h1> 
+      <Navbar />
+      <div className="relative flex h-screen flex-col items-center justify-center overflow-y-auto border-t border-blue-600">
+        <h1 className="py-5 text-3xl">Ingrese el dni</h1>
         <div className="flex space-x-4">
           <input
             type="text"
             placeholder="Dni del familiar"
             value={dniPrincipal}
             onChange={(e) => setDni(e.target.value)}
-            className="w-64 p-2 border-2 text-xl border-gray-300 h-10"
+            className="h-10 w-64 border-2 border-gray-300 p-2 text-xl"
           />
-          <button onClick={handleBuscarPersona} className="w-32 h-10 p-2 bg-blue-700 text-white items-center justify-center">
-          Buscar
+          <button
+            onClick={handleBuscarPersona}
+            className="h-10 w-32 bg-blue-700 p-2 text-white"
+          >
+            Buscar
           </button>
-      </div>
-      {/* Mostrar la lista de eventos */}
-      <div className="mt-6">
-        <h2 className="mb-2 text-xl font-semibold">Lista de Eventos</h2>
-          <ul>
-            {newEvent.map((evento, index) => (
-              <li
-              key={index}
-              className="mb-4 flex flex-col rounded border p-4 md:flex-row md:items-center"
-              >
-              {/* Detalles del evento */}
-              <div className="md:mr-4 md:w-1/6">
-                <strong>Hora:</strong> {evento.hora}
-              </div>
-              <div className="md:mr-4 md:w-1/6">
-                <strong>Fecha:</strong> {evento.fecha}
-              </div>
-              <div className="grid-cols w-1/6">
-                <strong>Nombre:</strong> {evento.nombre}
-              <br />
-                <strong>Tipo:</strong> {evento.tipo}
-              <br />
-              </div>
-              <div className="md:mr-4 md:w-1/6">
-                <strong>Descripción:</strong> {evento.descripcion}
-            </div>
-          </li>
-          ))}
-        </ul>
-      </div>
-       <div className="flex flex-col items-center justify-center h-32 border-t-blue-600">
-            <div className="w-86 px-16 py-6  bg-white shadow-xl shadow-grey border-2 border-blue-700  rounded">
-              <a href="/Paneles" className="text-black text-xl font-thin">Crear nuevas actividades</a>
-            </div>
+        </div>
+
+
+        <div className="absolute right-6 flex h-32 items-center justify-center ">
+          <div className="w-86 shadow-grey rounded border-2 border-blue-700 bg-white px-16 py-6 shadow-xl">
+            <a href="/Paneles" className="text-xl font-thin text-black">
+              Crear nuevas actividades
+            </a>
           </div>
         </div>
-        <div className="gap-4-px-20 py-6 bg-white shadow-xl border-2 border-blue-700 rounded justify-center">
-              <h1 className="text-3xl mb-4 ml-10 mr-1">Sugerir una actividad</h1>
+      </div>
+
+
+      <div className="flex px-32 w-full justify-center gap-x-48">
+        {/* Lista de Eventos */}
+        <div className="rounded border-2 border-blue-700 bg-white p-6 shadow-xl w-5/12">
+          <h1 className="mb-4 text-3xl">Lista de Eventos</h1>
+
+
+          {/* Mostrar la lista de eventos */}
+          <div className="mt-6">
+            <h2 className="mb-2 text-xl font-semibold">Lista de Eventos</h2>
+            <ul>
+              {newEvent.map((evento, index) => (
+                <li
+                  key={index}
+                  className="mb-4 flex flex-col rounded border p-4 md:flex-row md:items-center"
+                >
+                  {/* Detalles del evento */}
+                  <div className="md:mr-4 md:w-1/6">
+                    <strong>Hora:</strong> {evento.hora}
+                  </div>
+                  <div className="md:mr-4 md:w-1/6">
+                    <strong>Fecha:</strong> {evento.fecha}
+                  </div>
+                  <div className="grid-cols w-1/6">
+                    <strong>Nombre:</strong> {evento.nombre}
+                    <br />
+                    <strong>Tipo:</strong> {evento.tipo}
+                    <br />
+                  </div>
+                  <div className="md:mr-4 md:w-1/6">
+                    <strong>Descripción:</strong> {evento.descripcion}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+
+        {/* Formulario de Sugerencia */}
+        <div className="rounded border-2 border-blue-700 bg-white p-6 shadow-xl  w-2/4">
+        <div className="rounded border-2 border-blue-700 bg-white p-6 shadow-xl">
+          <h1 className="mb-4 text-3xl">Sugerir una actividad</h1>
           <div className="grid grid-cols-2 gap-4">
-          <div className="col-span-1">
-            <input
-              type="text"
-              placeholder="Dni del paciente"
-              value={dniPaciente}
-              onChange={(e) => setDniP(e.target.value)}
-              className="w-full p-2 border-2 text-xl border-gray-300"
-            />
+            <div className="col-span-1">
+              <input
+                type="text"
+                placeholder="Dni del paciente"
+                value={dniPaciente}
+                onChange={(e) => setDniP(e.target.value)}
+                className="w-full border-2 border-gray-300 p-2 text-xl"
+              />
+            </div>
+            <div className="col-span-1">
+              <input
+                type="text"
+                placeholder="Dni del medico a cargo"
+                value={dniMedico}
+                onChange={(e) => setDniM(e.target.value)}
+                className="w-full border-2 border-gray-300 p-2 text-xl"
+              />
+            </div>
+            <div className="col-span-1">
+              <input
+                type="text"
+                placeholder="Describa su sugerencia"
+                value={sugerencia}
+                onChange={(e) => setSugerencia(e.target.value)}
+                className="w-full border-2 border-gray-300 p-2 text-xl"
+              />
+            </div>
+            <div className="col-span-1">
+              <input
+                type="text"
+                placeholder="Nombre y apellido"
+                value={nombreCreador}
+                onChange={(e) => setNombreC(e.target.value)}
+                className="w-full border-2 border-gray-300 p-2 text-xl"
+              />
+            </div>
+            <button
+              onClick={handleCrearSugerencia}
+              className="h-10 w-32 items-center justify-center bg-blue-700 p-2 text-white"
+            >
+              Crear sugerencia
+            </button>
           </div>
-          <div className="col-span-1">
-            <input
-              type="text"
-              placeholder="Dni del medico a cargo"
-              value={dniMedico}
-              onChange={(e) => setDniM(e.target.value)}
-              className="w-full p-2 border-2 text-xl border-gray-300"
-            />
           </div>
-          <div className="col-span-1">
-            <input
-              type="text"
-              placeholder="Describa la sugerencia que desea crear"
-              value={sugerencia}
-              onChange={(e) => setSugerencia(e.target.value)}
-              className="w-full p-2 border-2 text-xl border-gray-300"
-            />
-          </div>
-          <div className="col-span-1">
-            <input
-              type="text"
-              placeholder="Ingrese su nombre y apellido"
-              value={nombreCreador}
-              onChange={(e) => setNombreC(e.target.value)}
-              className="w-full p-2 border-2 text-xl border-gray-300"
-            />
-          </div>
-          <button onClick={handleCrearSugerencia} className="w-32 h-10 p-2 bg-blue-700 text-white items-center justify-center"> Crear sugerencia</button>
-        </div>
+          {/* Mostrar la lista de sugerencias */}
+          <div className="mt-6">
+            <h2 className="mb-2 text-xl font-semibold">Lista de Sugerencias</h2>
+            <ul>
+  {newSuggest.map((sugerencia, index) => (
+    <li
+      key={index}
+      className="mb-4 flex flex-col rounded border p-4 md:flex-row md:items-center"
+    >
+      {/* Primer div */}
+      <div className="md:mr-4 md:w-1/4 mb-4 md:mb-0">
+        <strong>Sugiere:</strong> {sugerencia.nombreCreador}
       </div>
-      {/* Mostrar la lista de sugerencias */}
-      <div className="mt-6">
-        <h2 className="mb-2 text-xl font-semibold">Lista de Sugerencias</h2>
-          <ul>
-            {newSuggest.map((sugerencia, index) => (
-              <li
-              key={index}
-              className="mb-4 flex flex-col rounded border p-4 md:flex-row md:items-center"
-              >
-              {/* Detalles del evento */}
-              <div className="md:mr-4 md:w-1/6">
-                <strong>Sugerencia:</strong> {sugerencia.sugerencia}
-              </div>
-              <div className="md:mr-4 md:w-1/6">
-                <strong>Dni medico:</strong> {sugerencia.dniMedico}
-              </div>
-              <div className="grid-cols w-1/6">
-                <strong>Nombre:</strong> {sugerencia.nombreCreador}
-              </div>
-          </li>
-          ))}
-        </ul>
+
+      {/* Segundo div */}
+      <div className="md:mr-4 md:w-1/4 mb-4 md:mb-0">
+        <strong>Dni medico:</strong> {sugerencia.dniMedico}
+      </div>
+
+      {/* Tercer div (ocupará el resto del ancho) */}
+      <div className="w-full md:w-1/2">
+        <strong>Sugerencia:</strong> {sugerencia.sugerencia}
+      </div>
+    </li>
+  ))}
+</ul>
+
+          </div>
+        </div>
       </div>
     </main>
   );
 };
+
 
 export default PanelActs;
