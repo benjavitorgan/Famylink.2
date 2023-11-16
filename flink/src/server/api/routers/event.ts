@@ -154,7 +154,6 @@ export const eventRouter = createTRPCRouter({
                 }, select: {
                     dniMedico: true,
                     suggestion: true,
-                    isVerified: true,
                     creatorName: true
                 }
             });

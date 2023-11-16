@@ -78,7 +78,6 @@ const Navbar = () => {
 
 interface Evento {
   nombre: string;
-  dniPaciente: string;
   fecha: string;
   hora: string;
   tipo: string;
@@ -89,10 +88,11 @@ interface SugerenciaEncontrada {
   dniMedico: string;
   sugerencia: string;
   nombreCreador: string;
-  isVerified: boolean;
 }
 const PanelActs = () => {
 
+  const[newEvent, setnewEvent] = useState<Evento[]>([]);
+  const[newSuggest, setnewSuggest] = useState<SugerenciaEncontrada[]>([]);
   const[dniPrincipal, setDni] = useState('');
   const[dniPaciente, setDniP] = useState('');
   const[dniMedico, setDniM] = useState('');
@@ -101,28 +101,28 @@ const PanelActs = () => {
   const { mutate: crearSugerencia } = api.event.crearSugerencia.useMutation();
   const { mutate: buscarEvento } = api.event.buscarEvento.useMutation();
   const { mutate: buscarSugerencia } = api.event.buscarSugerencia.useMutation();
-  const { mutate: VerifySuggest } = api.event.verificarSugerencia.useMutation();
-
-
-
 
   const handleBuscarPersona = () => {
     if (dniPrincipal) {
       buscarEvento ({
         dni: dniPrincipal
       }, {
-        onSuccess: (data) => {
-          if (data.length > 0) {
-            const nuevoEventoEncontrado: Evento = {
-              nombre: "",
-              dniPaciente: "",
-              fecha: "",
-              hora: "",
-              tipo: "",
-              descripcion: "",
-            }
+        onSuccess: (act) => {
+          if (act.length > 0) {
+            const eventosEncontrados = act.map((evento) => ({
+              nombre: evento.event,
+              fecha: evento.date,
+              hora: evento.time,
+              tipo: evento.type,
+              descripcion: evento.desc,
+            }));
+
+            setnewEvent(eventosEncontrados);
+
+            // Ahora eventosEncontrados es un array de objetos Evento
+            console.log(eventosEncontrados);
           }
-        },
+          },
         onError: (err) => {
           console.log(err);
         }
@@ -131,14 +131,19 @@ const PanelActs = () => {
         dni: dniPrincipal
       }, {
         onSuccess: (sug) => {
-          if (sug.length > 0) {
-            const nuevaSugerenciaEncontrada: SugerenciaEncontrada = {
-              dniMedico: "",
-              sugerencia: "",
-              nombreCreador: "",
-              isVerified: false,
-            }
+          if (dniPrincipal) {
+            const SugerenciasEncontradas = sug.map((sugerencia) => ({
+              dniMedico: sugerencia.dniMedico,
+              sugerencia: sugerencia.suggestion,
+              nombreCreador: sugerencia.creatorName || ""
+            }));
+
+            setnewSuggest(SugerenciasEncontradas);
+            // Ahora eventosEncontrados es un array de objetos Evento
+            console.log(SugerenciasEncontradas);
           }
+        }, onError: (err) => { 
+            console.log(err);
         }
       })
     }
@@ -190,6 +195,35 @@ const PanelActs = () => {
           Buscar
           </button>
       </div>
+      {/* Mostrar la lista de eventos */}
+      <div className="mt-6">
+        <h2 className="mb-2 text-xl font-semibold">Lista de Eventos</h2>
+          <ul>
+            {newEvent.map((evento, index) => (
+              <li
+              key={index}
+              className="mb-4 flex flex-col rounded border p-4 md:flex-row md:items-center"
+              >
+              {/* Detalles del evento */}
+              <div className="md:mr-4 md:w-1/6">
+                <strong>Hora:</strong> {evento.hora}
+              </div>
+              <div className="md:mr-4 md:w-1/6">
+                <strong>Fecha:</strong> {evento.fecha}
+              </div>
+              <div className="grid-cols w-1/6">
+                <strong>Nombre:</strong> {evento.nombre}
+              <br />
+                <strong>Tipo:</strong> {evento.tipo}
+              <br />
+              </div>
+              <div className="md:mr-4 md:w-1/6">
+                <strong>Descripción:</strong> {evento.descripcion}
+            </div>
+          </li>
+          ))}
+        </ul>
+      </div>
        <div className="flex flex-col items-center justify-center h-32 border-t-blue-600">
             <div className="w-86 px-16 py-6  bg-white shadow-xl shadow-grey border-2 border-blue-700  rounded">
               <a href="/Paneles" className="text-black text-xl font-thin">Crear nuevas actividades</a>
@@ -237,6 +271,29 @@ const PanelActs = () => {
           </div>
           <button onClick={handleCrearSugerencia} className="w-32 h-10 p-2 bg-blue-700 text-white items-center justify-center"> Crear sugerencia</button>
         </div>
+      </div>
+      {/* Mostrar la lista de sugerencias */}
+      <div className="mt-6">
+        <h2 className="mb-2 text-xl font-semibold">Lista de Sugerencias</h2>
+          <ul>
+            {newSuggest.map((sugerencia, index) => (
+              <li
+              key={index}
+              className="mb-4 flex flex-col rounded border p-4 md:flex-row md:items-center"
+              >
+              {/* Detalles del evento */}
+              <div className="md:mr-4 md:w-1/6">
+                <strong>Sugerencia:</strong> {sugerencia.sugerencia}
+              </div>
+              <div className="md:mr-4 md:w-1/6">
+                <strong>Dni medico:</strong> {sugerencia.dniMedico}
+              </div>
+              <div className="grid-cols w-1/6">
+                <strong>Nombre:</strong> {sugerencia.nombreCreador}
+              </div>
+          </li>
+          ))}
+        </ul>
       </div>
     </main>
   );
