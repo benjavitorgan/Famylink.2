@@ -1,10 +1,10 @@
-import { error } from "console";
+//import { error } from "console";
 import { z } from "zod";
 import { prisma } from "~/server/db";
 import {
     createTRPCRouter,
     publicProcedure,
-    protectedProcedure,
+    //protectedProcedure,
 } from "~/server/api/trpc";
 
 export const eventRouter = createTRPCRouter({
@@ -105,6 +105,8 @@ export const eventRouter = createTRPCRouter({
                     creatorName,
                 }
             });
+
+            return sugerencia
     }),
     verificarMedico: publicProcedure
         .input(z.object({ dniMedico: z.string(),}))

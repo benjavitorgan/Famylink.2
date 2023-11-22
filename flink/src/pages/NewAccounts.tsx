@@ -1,11 +1,11 @@
-import { NextPage } from "next";
+/*import { NextPage } from "next";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { getDisplayName } from "next/dist/shared/lib/utils";
 import Head from "next/head";
 import Link from "next/link";
-import { api } from "~/utils/api";
+import { api } from "~/utils/api";*/
 import NewAccount from '../components/NewAccount'
-import HeaderComponent from '../components/Header'
+//import HeaderComponent from '../components/Header'
 import Image from 'next/image'
 
 export default function NewAccounts() {

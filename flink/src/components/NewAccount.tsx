@@ -1,7 +1,7 @@
-import { getDisplayName } from "next/dist/shared/lib/utils";
+/*import { getDisplayName } from "next/dist/shared/lib/utils";
 import Head from "next/head";
 import Link from "next/link";
-import { api } from "~/utils/api";
+import { api } from "~/utils/api";*/
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import Image from 'next/image'
 import { useRouter } from 'next/router';
@@ -10,7 +10,7 @@ import { useRouter } from 'next/router';
 
 import { validarEmail } from './FuncionesValidacion';
 import { signIn } from "next-auth/react";
-import router from "next/router";
+//import router from "next/router";
 
 export default function NewAccounts() {
   const [email, setEmail] = useState('');

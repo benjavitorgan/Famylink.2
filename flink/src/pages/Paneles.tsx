@@ -1,6 +1,7 @@
+import Link from 'next/link';
 import React, { useState } from 'react';
-import axios from 'axios';
-import { useRouter } from "next/router";
+//import axios from 'axios';
+//import { useRouter } from "next/router";
 import { api } from "src/utils/api";
 
 /*
@@ -156,7 +157,7 @@ const NuevaActividad = () => {
     <main>
       
       <header className="bg-purple-700 px-6 py-5 text-center text-3xl text-white">
-        <a href="/PanelDeActividades" className="text-base float-left mr-4 rounded border border-grey-600 p-2">Volver</a>
+        <Link href="/PanelDeActividades" className="text-base float-left mr-4 rounded border border-grey-600 p-2">Volver</Link>
         Panel de actividades
       </header>
 

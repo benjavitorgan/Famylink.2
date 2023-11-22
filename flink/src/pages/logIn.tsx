@@ -1,9 +1,10 @@
-import { NextPage } from "next";
+/*import { NextPage } from "next";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { getDisplayName } from "next/dist/shared/lib/utils";
 import Head from "next/head";
 import Link from "next/link";
-import { api } from "~/utils/api";
+import { api } from "~/utils/api";*/
+import Link from "next/link";
 import LogIn from "../components/log-in";
 import Image from 'next/image'
 
@@ -36,7 +37,7 @@ export default function loginOndas() {
           </svg>
         </div>
         <nav className="z-30">
-          <a href="/Landing" className="ml-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Landing</a>
+          <Link href="/Landing" className="ml-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Landing</Link>
         </nav>
       </header>
       <LogIn />

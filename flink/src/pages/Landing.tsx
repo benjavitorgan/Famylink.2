@@ -1,8 +1,8 @@
-import { NextPage } from "next";
+/*import { NextPage } from "next";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Head from "next/head";
-import Link from "next/link";
-import { api } from "~/utils/api";
+import { api } from "~/utils/api";*/
+import Link from 'next/link';
 import Image from 'next/image'
 
 export default function ondas() {
@@ -153,10 +153,10 @@ export default function ondas() {
             <h1 className="text-xl font-bold">Logo</h1>
           </div>
           <nav className="footer-links">
-            <a href="#" className="text-gray-300 hover:text-white mx-4">Home</a>
-            <a href="#" className="text-gray-300 hover:text-white mx-4">Features</a>
-            <a href="#" className="text-gray-300 hover:text-white mx-4">About</a>
-            <a href="#" className="text-gray-300 hover:text-white mx-4">Contact</a>
+            <Link href="#" className="text-gray-300 hover:text-white mx-4">Home</Link>
+            <Link href="#" className="text-gray-300 hover:text-white mx-4">Features</Link>
+            <Link href="#" className="text-gray-300 hover:text-white mx-4">About</Link>
+            <Link href="#" className="text-gray-300 hover:text-white mx-4">Contact</Link>
           </nav>
         </div>
       </footer>

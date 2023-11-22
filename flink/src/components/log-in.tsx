@@ -1,9 +1,9 @@
-import { getDisplayName } from "next/dist/shared/lib/utils";
+/*import { getDisplayName } from "next/dist/shared/lib/utils";
 import Head from "next/head";
 import Link from "next/link";
-import { api } from "~/utils/api";
+import { api } from "~/utils/api";*/
 import React, { useState, ChangeEvent, FormEvent } from 'react';
-import { validarEmail } from './FuncionesValidacion';
+//import { validarEmail } from './FuncionesValidacion';
 import { signIn } from "next-auth/react";
 import router from "next/router";
 

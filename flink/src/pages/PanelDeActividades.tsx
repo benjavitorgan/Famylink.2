@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import Image from 'next/image'
 import { api } from "src/utils/api";
-import { actionAsyncStorage } from 'next/dist/client/components/action-async-storage.external';
+import Link from 'next/link';
+//import { actionAsyncStorage } from 'next/dist/client/components/action-async-storage.external';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -54,19 +55,19 @@ const Navbar = () => {
           </div>
           
           <ul className="bg-white flex flex-col items-center justify-center h-screen -md shadow-md text-3xl">
-            <li className="py-4 hover:underline "><a href="/Landing">Volver</a></li>
+            <li className="py-4 hover:underline "><Link href="/Landing">Volver</Link></li>
             <svg width="94" height="4" viewBox="0 0 94 4" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect width="94" height="4" rx="2" fill="black"/>
             </svg>
-            <li className="py-4 hover:underline"><a href="/Landing">Terminos y condiciones</a></li>
+            <li className="py-4 hover:underline"><Link href="/Landing">Terminos y condiciones</Link></li>
             <svg width="94" height="4" viewBox="0 0 94 4" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect width="94" height="4" rx="2" fill="black"/>
             </svg>
-            <li className="py-4 hover:underline"><a href="/Landing">Sobre nosotros</a></li>
+            <li className="py-4 hover:underline"><Link href="/Landing">Sobre nosotros</Link></li>
             <svg width="94" height="4" viewBox="0 0 94 4" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect width="94" height="4" rx="2" fill="black"/>
             </svg>
-            <li className="py-4 hover:underline"><a href="/NewAccounts">Crear cuenta</a></li>
+            <li className="py-4 hover:underline"><Link href="/NewAccounts">Crear cuenta</Link></li>
           </ul>
           
         </div>
@@ -213,9 +214,9 @@ const PanelActs = () => {
 
         <div className="absolute right-6 flex h-32 items-center justify-center ">
           <div className="w-86 shadow-grey rounded border-2 border-blue-700 bg-white px-16 py-6 shadow-xl">
-            <a href="/Paneles" className="text-xl font-thin text-black">
+            <Link href="/Paneles" className="text-xl font-thin text-black">
               Crear nuevas actividades
-            </a>
+            </Link>
           </div>
         </div>
       </div>
