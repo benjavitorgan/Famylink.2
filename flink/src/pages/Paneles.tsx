@@ -45,31 +45,39 @@ const NuevaActividad = () => {
         dniPaciente: dniPaciente
       }, {
         onSuccess: () => {
+          const nuevaActividad: Actividad = {
+            nombre,
+            dniPaciente,
+            fecha,
+            hora,
+            tipo,
+            descripcion
+          }
+      
+          setNombre("");
+          setDni("");
+          setFecha("");
+          setHora("");
+          setTipo("");
+          setDesc("");
+      
+          setActividades ((prevActividades) => [...prevActividades, nuevaActividad])
+
           console.log("Bien");
         },
         onError: (err) => {
           console.log(err);
+          alert ('El dni no coincide con el de un paciente dado de alta \n \n ¡Registrelo primero!')
+          setNombre("");
+          setDni("");
+          setFecha("");
+          setHora("");
+          setTipo("");
+          setDesc("");
         }
       })
     }
 
-    const nuevaActividad: Actividad = {
-      nombre,
-      dniPaciente,
-      fecha,
-      hora,
-      tipo,
-      descripcion
-    }
-
-    setNombre("");
-    setDni("");
-    setFecha("");
-    setHora("");
-    setTipo("");
-    setDesc("");
-
-    setActividades ((prevActividades) => [...prevActividades, nuevaActividad])
   };
 
   /*
@@ -146,7 +154,9 @@ const NuevaActividad = () => {
 
   return (
     <main>
+      
       <header className="bg-purple-700 px-6 py-5 text-center text-3xl text-white">
+        <a href="/PanelDeActividades" className="text-base float-left mr-4 rounded border border-grey-600 p-2">Volver</a>
         Panel de actividades
       </header>
 

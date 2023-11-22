@@ -13,6 +13,19 @@ export const eventRouter = createTRPCRouter({
         .mutation(async ({ input, ctx }) => {
             const {date, dniPaciente, event, type, time, desc} = input;
 
+            const existingUser = await prisma.user.findUnique({
+                where: {
+                  dni: dniPaciente
+                }, 
+                
+            });
+
+            if (!existingUser) {
+                throw new Error("El número de dni no corresponde a un paciente dado de alta");
+                alert ("El paciente no esta dado de alta, registrelo primero");
+            } 
+
+            console.log("Hola")
 
             const newevent = await ctx.prisma.activities.create({
                 data: {

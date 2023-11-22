@@ -170,14 +170,7 @@ export default function NewAccounts() {
         method: "signUp",
         redirect: false,
       });
-
-      console.log(response.email);
-  
-      // if (response?.ok) {
-      //   void router.push("/PanelDeActividades"); // Redirect to the desired page
-      // } else {
-      //   alert("No se pudo entrar");
-      // }
+      
     } catch (error) {
       console.error("Error:", error);
       // Handle any errors that occur during the sign-in process
