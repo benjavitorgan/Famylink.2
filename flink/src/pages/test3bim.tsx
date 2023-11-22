@@ -2,7 +2,8 @@ import { NextPage } from "next";
 import Head from "next/head";
 import { api } from "~/utils/api";
 import { signIn } from "next-auth/react";
-const Home: NextPage = () => {
+/*const Home: NextPage = () => {
+    
     const { data: buscarOPData } = api.info.buscarInfoOP.useQuery({
         dni: "46756340",
         nombre: "Benjamin Vitorgan"
@@ -52,4 +53,4 @@ const Home: NextPage = () => {
     );
 };
 
-export default Home;
+export default Home;*/
