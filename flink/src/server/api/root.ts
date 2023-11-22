@@ -1,4 +1,4 @@
-import { postRouter } from "~/server/api/routers/post";
+//import { postRouter } from "~/server/api/routers/post";
 import { createTRPCRouter } from "~/server/api/trpc";
 import { eventRouter } from "./routers/event";
 import { fetchinfoRouter } from "./routers/info";
@@ -8,7 +8,6 @@ import { fetchinfoRouter } from "./routers/info";
  * All routers added in /api/routers should be manually added here.
  */
 export const appRouter = createTRPCRouter({
-  post: postRouter,
   event: eventRouter,
   info: fetchinfoRouter
 });
