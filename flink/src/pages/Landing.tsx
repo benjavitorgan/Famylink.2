@@ -18,12 +18,12 @@ export default function ondas() {
           />
         </div>
         <nav>
-          <a href="/PanelDeActividades" className="text-gray-300 text-xl font-thin hover:text-white hover:underline mx-4">Actividades</a>
-          <a href="#" className="text-gray-300 text-xl font-thin hover:text-white hover:underline mx-4">Contactos</a>
-          <a href="#" className="text-gray-300 text-xl font-thin hover:text-white hover:underline mx-4">Informacion</a>
-          <a href="#" className="text-gray-300 text-xl font-thin hover:text-white hover:underline mx-4">Equipo</a>
-          <a href="/logIn" className="bg-transparent hover:bg-blue-500 text-white text-xl font-thin hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">Iniciar sesion</a>
-          <a href="/NewAccounts" className="ml-4 text-xl bg-blue-500 hover:bg-blue-600 text-white font-thin px-4 py-2 rounded">Registrarse</a>
+          <Link href="/PanelDeActividades" className="text-gray-300 text-xl font-thin hover:text-white hover:underline mx-4">Actividades</Link>
+          <Link href="#" className="text-gray-300 text-xl font-thin hover:text-white hover:underline mx-4">Contactos</Link>
+          <Link href="#" className="text-gray-300 text-xl font-thin hover:text-white hover:underline mx-4">Informacion</Link>
+          <Link href="#" className="text-gray-300 text-xl font-thin hover:text-white hover:underline mx-4">Equipo</Link>
+          <Link href="/logIn" className="bg-transparent hover:bg-blue-500 text-white text-xl font-thin hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">Iniciar sesion</Link>
+          <Link href="/NewAccounts" className="ml-4 text-xl bg-blue-500 hover:bg-blue-600 text-white font-thin px-4 py-2 rounded">Registrarse</Link>
         </nav>
       </header>
 

@@ -7,6 +7,7 @@ import { api } from "~/utils/api";*/
 import NewAccount from '../components/NewAccount'
 //import HeaderComponent from '../components/Header'
 import Image from 'next/image'
+import Link from "next/link"
 
 export default function NewAccounts() {
   return (
@@ -37,7 +38,7 @@ export default function NewAccounts() {
           
         </div>
       <nav className="z-30 flex-col ml-4 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">
-          <a href="/Landing" >Landing</a>
+          <Link href="/Landing" >Landing</Link>
 
         </nav>
     </header>
