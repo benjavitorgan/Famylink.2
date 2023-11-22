@@ -126,17 +126,17 @@ export default function ondas() {
             <p className="text-black text-5xl font-thin">Ejemplos de uso</p>
             <div className="grid grid-cols-3 gap-8">
               <div className="testimonial-item bg-white p-6 rounded-lg shadow-md">
-                <p className="mb-4">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at purus est. Curabitur quis mi et tortor ultricies tincidunt."</p>
+                <p className="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at purus est. Curabitur quis mi et tortor ultricies tincidunt.</p>
                 <h4 className="text-lg font-bold">John Doe</h4>
                 <p className="text-gray-500">CEO, Company</p>
               </div>
               <div className="testimonial-item bg-white p-6 rounded-lg shadow-md">
-                <p className="mb-4">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at purus est. Curabitur quis mi et tortor ultricies tincidunt."</p>
+                <p className="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at purus est. Curabitur quis mi et tortor ultricies tincidunt.</p>
                 <h4 className="text-lg font-bold">Jane Doe</h4>
                 <p className="text-gray-500">CTO, Company</p>
               </div>
               <div className="testimonial-item bg-white p-6 rounded-lg shadow-md">
-                <p className="mb-4">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at purus est. Curabitur quis mi et tortor ultricies tincidunt."</p>
+                <p className="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at purus est. Curabitur quis mi et tortor ultricies tincidunt.</p>
                 <h4 className="text-lg font-bold">Bob Smith</h4>
                 <p className="text-gray-500">Marketing Director, Company</p>
               </div>
