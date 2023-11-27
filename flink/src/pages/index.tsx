@@ -63,6 +63,15 @@ function AuthShowcase() {
     { enabled: sessionData?.user !== undefined }
   );*/
 
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+    } catch (error) {
+      // Handle the error if needed
+      console.error('Error signing out:', error);
+    }
+  };
+
   return (
     <div className="flex flex-col items-center justify-center gap-4">
       <p className="text-center text-2xl text-white">
@@ -70,7 +79,7 @@ function AuthShowcase() {
       </p>
       <button
         className="rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20"
-        onClick={sessionData ? () => { void signOut() } : () => { router.push('/logIn') }}
+        onClick={sessionData ? handleSignOut : () => { router.push('/logIn') }}
       >
         {sessionData ? "Sign out" : "Sign in"}
       </button>
