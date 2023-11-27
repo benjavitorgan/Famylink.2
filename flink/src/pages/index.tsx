@@ -54,18 +54,14 @@ export default function Home() {
   );
 }
 
-function AuthShowcase() {
+async function AuthShowcase() {
   const { data: sessionData } = useSession();
   const router = useRouter();
-
-  /*const { data: secretMessage } = api.post.getSecretMessage.useQuery(
-    undefined, // no input
-    { enabled: sessionData?.user !== undefined }
-  );*/
 
   const handleSignOut = async () => {
     try {
       await signOut();
+      // Optionally, you can perform additional actions after successful sign-out
     } catch (error) {
       // Handle the error if needed
       console.error('Error signing out:', error);
@@ -79,7 +75,7 @@ function AuthShowcase() {
       </p>
       <button
         className="rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20"
-        onClick={sessionData ? handleSignOut : () => { router.push('/logIn') }}
+        onClick={sessionData ? handleSignOut : () => router.push('/logIn')}
       >
         {sessionData ? "Sign out" : "Sign in"}
       </button>
