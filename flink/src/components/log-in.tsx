@@ -6,6 +6,7 @@ import React, { useState, ChangeEvent, FormEvent } from 'react';
 //import { validarEmail } from './FuncionesValidacion';
 import { signIn } from "next-auth/react";
 import router from "next/router";
+import Link from 'next/link';
 
 export default function LogIn() {
   const [dni, setDni] = useState('');
@@ -135,7 +136,7 @@ export default function LogIn() {
               Entrar
             </button>
             <label htmlFor="text" className="py-0">
-              ¿No tienes una cuenta? <a href="/NewAccounts" className="text-blue-600">Registrate</a>
+              ¿No tienes una cuenta? <Link href="/NewAccounts" className="text-blue-600">Registrate</Link>
             </label>
           </div>
         </form>

@@ -1,12 +1,11 @@
 /*import { getDisplayName } from "next/dist/shared/lib/utils";
 import Head from "next/head";
-import Link from "next/link";
 import { api } from "~/utils/api";*/
-import React, { useState, ChangeEvent, FormEvent } from 'react';
+import { useState } from 'react';
+import { ChangeEvent, FormEvent } from 'react';
 import Image from 'next/image'
 import { useRouter } from 'next/router';
-
-
+import Link from "next/link";
 
 import { validarEmail } from './FuncionesValidacion';
 import { signIn } from "next-auth/react";
@@ -63,16 +62,13 @@ export default function NewAccounts() {
   const handleChangeNombre = (event: ChangeEvent<HTMLInputElement>) => {
     const nuevoNombre = event.target.value;
     setNombres(nuevoNombre);
-    const esValido = /^[a-zA-Z\s]*$/.test(nuevoNombre);
-    // Mostrar mensaje de error si no solo hay letras en el nombre
-    // Puedes usar otro estado para manejar el estado de validez del nombre
-    // Aquí se establece en false si no es válido
+    //const esValido = /^[a-zA-Z\s]*$/.test(nuevoNombre);
   };
 
   const handleChangeApellido = (event: ChangeEvent<HTMLInputElement>) => {
     const nuevoApellido = event.target.value;
     setApellido(nuevoApellido);
-    const esValido = /^[a-zA-Z\s]*$/.test(nuevoApellido);
+    //const esValido = /^[a-zA-Z\s]*$/.test(nuevoApellido);
     // Mostrar mensaje de error si no solo hay letras en el apellido
     // Puedes usar otro estado para manejar el estado de validez del apellido
     // Aquí se establece en false si no es válido
@@ -81,7 +77,7 @@ export default function NewAccounts() {
   const handleChangeTelefono = (event: ChangeEvent<HTMLInputElement>) => {
     const nuevoTelefono = event.target.value;
     setTelefono(nuevoTelefono);
-    const esValido = /^\d+$/.test(nuevoTelefono);
+    //const esValido = /^\d+$/.test(nuevoTelefono);
     // Mostrar mensaje de error si hay letras en el número de teléfono
     // Puedes usar otro estado para manejar el estado de validez del teléfono
     // Aquí se establece en false si no es válido
@@ -90,7 +86,7 @@ export default function NewAccounts() {
   const handleChangeAge = (event: ChangeEvent<HTMLInputElement>) => {
     const newAge = event.target.value;
     setAge(newAge);
-    const esValido = /^\d+$/.test(newAge);
+    //const esValido = /^\d+$/.test(newAge);
     // Mostrar mensaje de error si hay letras en el número de teléfono
     // Puedes usar otro estado para manejar el estado de validez del teléfono
     // Aquí se establece en false si no es válido
@@ -99,7 +95,7 @@ export default function NewAccounts() {
   const handleChangeBloodtype = (event: ChangeEvent<HTMLInputElement>) => {
     const newBT = event.target.value;
     setBloodtype(newBT);
-    const esValido = /^\d+$/.test(newBT);
+    //const esValido = /^\d+$/.test(newBT);
     // Mostrar mensaje de error si hay letras en el número de teléfono
     // Puedes usar otro estado para manejar el estado de validez del teléfono
     // Aquí se establece en false si no es válido
@@ -107,7 +103,7 @@ export default function NewAccounts() {
 
   const handleChangeRole = (newRole: string) => {
     setRole(newRole);
-    const esValido = /^\d+$/.test(newRole);
+    //const esValido = /^\d+$/.test(newRole);
     // Mostrar mensaje de error si hay letras en el número de teléfono
     // Puedes usar otro estado para manejar el estado de validez del teléfono
     // Aquí se establece en false si no es válido
@@ -116,7 +112,7 @@ export default function NewAccounts() {
   const handleChangeSickness = (event: ChangeEvent<HTMLInputElement>) => {
     const newSCK = event.target.value;
     setSickness(newSCK);
-    const esValido = /^\d+$/.test(newSCK);
+    //const esValido = /^\d+$/.test(newSCK);
     // Mostrar mensaje de error si hay letras en el número de teléfono
     // Puedes usar otro estado para manejar el estado de validez del teléfono
     // Aquí se establece en false si no es válido
@@ -125,7 +121,7 @@ export default function NewAccounts() {
   const handleChangeDni = (event: ChangeEvent<HTMLInputElement>) => {
     const newDni = event.target.value;
     setDni(newDni);
-    const esValido = /^\d+$/.test(newDni);
+    //const esValido = /^\d+$/.test(newDni);
     // Mostrar mensaje de error si hay letras en el número de teléfono
     // Puedes usar otro estado para manejar el estado de validez del teléfono
     // Aquí se establece en false si no es válido
@@ -556,12 +552,12 @@ export default function NewAccounts() {
             <button className="w-1/2 px-4 py-2 text-white bg-blue-700 rounded hover:bg-blue-600" type="submit" onClick={() => void handleEnter()}>
               Entrar
               <nav>
-                <a href="/Landing"></a>
+                <Link href="/Landing"></Link>
               </nav>
               
             </button>
             <label htmlFor="text" className="py-0 text-center">
-              ¿Ya tienes una cuenta? <a href="/logIn" className="text-blue-600">Iniciar sesión</a>
+              ¿Ya tienes una cuenta? <Link href="/logIn" className="text-blue-600">Iniciar sesión</Link>
             </label>
           </div>
         </form>

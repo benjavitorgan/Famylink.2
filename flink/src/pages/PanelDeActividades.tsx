@@ -10,9 +10,9 @@ const Navbar = () => {
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
-  const closeMenu = () => {
-    setIsOpen(false);
-  };
+  //const closeMenu = () => {
+    //setIsOpen(false);
+  //};
 
   return (
 
@@ -136,7 +136,7 @@ const PanelActs = () => {
             const SugerenciasEncontradas = sug.map((sugerencia) => ({
               dniMedico: sugerencia.dniMedico,
               sugerencia: sugerencia.suggestion,
-              nombreCreador: sugerencia.creatorName || ""
+              nombreCreador: sugerencia.creatorName ?? ""
             }));
 
             setnewSuggest(SugerenciasEncontradas);
