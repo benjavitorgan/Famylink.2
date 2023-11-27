@@ -126,6 +126,7 @@ const PanelActs = () => {
           },
         onError: (err) => {
           console.log(err);
+          alert ("No se han encontrado eventos")
         }
       })
       buscarSugerencia ({
@@ -145,8 +146,11 @@ const PanelActs = () => {
           }
         }, onError: (err) => { 
             console.log(err);
+            alert ("No se han encontrado sugerencias");
         }
       })
+    } else {
+      alert ("Ingrese un dni");
     }
   }
 

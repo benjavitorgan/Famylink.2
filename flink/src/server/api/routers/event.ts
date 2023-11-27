@@ -160,6 +160,7 @@ export const eventRouter = createTRPCRouter({
             });
 
             if (!existingUser) {
+                alert ("El nro de dni no corresponde a un paciente");
                 throw new Error("El número de dni no corresponde a un paciente dado de alta");
             }
 

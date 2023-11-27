@@ -36,7 +36,7 @@ const NuevaActividad = () => {
   const { mutate: crearEvento } = api.event.crearEvento.useMutation();
 
   const handleCrearActividad = () => {
-    if (dniPaciente && fecha) {
+    if (dniPaciente && fecha && hora && tipo && descripcion && nombre) {
       crearEvento({
         event: nombre,
         type: tipo,
@@ -77,6 +77,8 @@ const NuevaActividad = () => {
           setDesc("");
         }
       })
+    } else {
+      alert ("Complete todos los campos");
     }
 
   };
