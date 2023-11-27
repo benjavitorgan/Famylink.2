@@ -1,7 +1,7 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import Head from "next/head";
 import Link from "next/link";
-import { useRouter } from 'next/router';
+//import { useRouter } from 'next/router'
 
 //import { api } from "~/utils/api";
 
@@ -54,31 +54,20 @@ export default function Home() {
   );
 }
 
-async function AuthShowcase() {
-  const { data: sessionData } = useSession();
-  const router = useRouter();
+function AuthShowcase() {
+  //const { data: sessionData } = useSession();
+  //const router = useRouter();
 
-  const handleSignOut = async () => {
-    try {
-      await signOut();
-      // Optionally, you can perform additional actions after successful sign-out
-    } catch (error) {
-      // Handle the error if needed
-      console.error('Error signing out:', error);
-    }
-  };
+  /*const { data: secretMessage } = api.post.getSecretMessage.useQuery(
+    undefined, // no input
+    { enabled: sessionData?.user !== undefined }
+  );*/
 
   return (
     <div className="flex flex-col items-center justify-center gap-4">
-      <p className="text-center text-2xl text-white">
-        {sessionData && <span>Logged in as {sessionData.user?.name}</span>}
-      </p>
-      <button
-        className="rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20"
-        onClick={sessionData ? handleSignOut : () => router.push('/logIn')}
+      <Link href="/logIn" className="rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20"
       >
-        {sessionData ? "Sign out" : "Sign in"}
-      </button>
+      </Link>
     </div>
   );
 }
