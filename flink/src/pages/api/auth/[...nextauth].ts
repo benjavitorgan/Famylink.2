@@ -2,11 +2,11 @@ import NextAuth from "next-auth";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import type { UserType } from ".prisma/client";
 import type { GetServerSidePropsContext } from "next";
-import type {
+import {
   getServerSession,
   NextAuthOptions,
-  DefaultSession,
 } from "next-auth";
+import type { DefaultSession } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { prisma } from "~/server/db";
 import bcrypt from "bcrypt";
