@@ -22,10 +22,7 @@ export const eventRouter = createTRPCRouter({
 
             if (!existingUser) {
                 throw new Error("El número de dni no corresponde a un paciente dado de alta");
-                alert ("El paciente no esta dado de alta, registrelo primero");
-            } 
-
-            console.log("Hola")
+            }
 
             const newevent = await ctx.prisma.activities.create({
                 data: {
@@ -92,8 +89,16 @@ export const eventRouter = createTRPCRouter({
                 }
             });
 
+            const dniM = await ctx.prisma.user.findUnique({
+                where: {
+                    dni: dniMedico
+                }
+            });
+
             if (!dniP) {
                 throw new Error("El dni ingresado no corresponde a un paciente dado de alta");
+            } else if (!dniM) {
+                throw new Error ("El dni ingresado no corresponde a un medico dado de alta, verifique que sea correcto")
             }
 
             const sugerencia = await ctx.prisma.suggests.create({
@@ -108,45 +113,6 @@ export const eventRouter = createTRPCRouter({
 
             return sugerencia
     }),
-    verificarMedico: publicProcedure
-        .input(z.object({ dniMedico: z.string(),}))
-        .mutation(async ({ input, ctx }) => {
-            const { dniMedico } = input;
-
-            const medic = await ctx.prisma.user.findUnique ({
-                where: {
-                    dni: dniMedico,
-                }, select: {
-                    role: true
-                }
-            });
-
-            if (medic?.role == "NS") {
-                return true
-            } else {
-                throw new Error ("El dni no corresponde a un medico o enfermero dado de alta");
-                return false
-            }
-    }),
-    verificarSugerencia: publicProcedure
-        .input(z.object({ dniSug: z.string()}))
-        .mutation(async ({ input, ctx }) => { 
-            const { dniSug } = input;
-
-            const id = await ctx.prisma.suggests.findMany ({
-                where: {
-                    dniPaciente: dniSug
-                }, select: {
-                    id: true,
-                }
-            })
-
-            const idSug = id;
-
-            console.log(idSug);
-
-
-    }),
     buscarSugerencia: publicProcedure
         .input(z.object({ dni: z.string(),}))
         .mutation(async ({ input, ctx }) => { 
@@ -160,7 +126,6 @@ export const eventRouter = createTRPCRouter({
             });
 
             if (!existingUser) {
-                alert ("El nro de dni no corresponde a un paciente");
                 throw new Error("El número de dni no corresponde a un paciente dado de alta");
             }
 

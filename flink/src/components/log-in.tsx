@@ -87,7 +87,7 @@ export default function LogIn() {
       
     <div className="flex items-center justify-center h-screen border-t-blue-600">
       <div className="w-1/4 p-6 bg-white rounded shadow-xl shadow-grey">
-        <h2 className="font-semibold text-3xl mb-4 text-center">Iniciar sesiónA</h2>
+        <h2 className="font-semibold text-3xl mb-4 text-center">Iniciar sesión</h2>
         <form>
           <div className="mb-4">
             <div className="">
