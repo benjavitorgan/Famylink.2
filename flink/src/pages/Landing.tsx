@@ -213,7 +213,7 @@ export default function Ondas() {
 
 
           <div className="absolute left-0 top-0 z-10">
-            <section className="mt-64 px-32 py-8" id="comoFunciona">
+            <section className="mt-64 px-32 py-12" id="comoFunciona">
               <p className=" py-12 text-7xl font-semibold text-black">
                 Como funciona?
               </p>
