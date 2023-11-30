@@ -213,7 +213,7 @@ export default function Ondas() {
 
 
           <div className="absolute left-0 top-0 z-10">
-            <section className="mt-56 px-32 py-32" id="comoFunciona">
+            <section className="mt-64 px-32 py-16" id="comoFunciona">
               <p className=" py-12 text-7xl font-semibold text-black">
                 Como funciona?
               </p>
@@ -290,7 +290,7 @@ export default function Ondas() {
                 </svg>
               </div>
             </section>
-            <section className="px-32 py-32">
+            <section className="px-32 py-28">
               <div className="flex gap-x-64">
                 <svg
                   className="shrink-0"
