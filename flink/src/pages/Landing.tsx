@@ -6,9 +6,13 @@ import Link from "next/link";
 import { useState, useEffect } from 'react';
 
 
+
+
 export default function Ondas() {
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [isScrolledUp, setIsScrolledUp] = useState(true);
+
+
 
 
   useEffect(() => {
@@ -16,18 +20,26 @@ export default function Ondas() {
       const currentScrollPos = window.scrollY;
 
 
+
+
       setIsScrolledUp(prevScrollPos > currentScrollPos || currentScrollPos === 0);
       setPrevScrollPos(currentScrollPos);
     };
 
 
+
+
     window.addEventListener("scroll", handleScroll);
+
+
 
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [prevScrollPos]);
+
+
 
 
   return (
@@ -97,6 +109,8 @@ export default function Ondas() {
       </header>
 
 
+
+
       <main className="relative mx-auto">
         <div className="relative">
           <svg
@@ -120,6 +134,8 @@ export default function Ondas() {
               strokeWidth="53"
             />
           </svg>
+
+
 
 
           <div
@@ -194,8 +210,10 @@ export default function Ondas() {
           </svg>
 
 
+
+
           <div className="absolute left-0 top-0 z-10">
-            <section className="mt-96 px-64 py-64" id="comoFunciona">
+            <section className="mt-56 px-32 py-32" id="comoFunciona">
               <p className=" py-12 text-7xl font-semibold text-black">
                 Como funciona?
               </p>
@@ -203,12 +221,7 @@ export default function Ondas() {
               <div className="flex">
                 <br />
                 <p className="shrink px-16 text-left text-3xl font-thin text-white">
-                  En primer lugar, los dos usuarios deberian estar conectados a
-                  una cuenta de Familylink. Despues de tener las dos cuentas
-                  creadas, el usuario (familiar, conocido, entre otr@s) tendrá
-                  que crear una lista de actividades nueva, en la cual el
-                  medico, cuidador, etc, van a unirse ingresando el nombre de la
-                  lista de actividades y una contraseña.{" "}
+                  Primero que nada, el usuario (familiar de la persona mayor a cuidar) debe crearse un usuario, para asi poder crearle un usuario a su familiar, seleccionando el rol de persona mayor a la hora de crearle el usuario a su familiar. Por su parte, el medico debe hacer lo mismo. Una vez creadas las cuentas, el usuario podra acceder al panel de actividades. En este panel, ingresando el dni de su familiar, podra visualizar las actividades que realizo su familiar, las cuales tendran fecha, hora, nombre, tipo y descripcion de la misma. Ademas, en caso de no estar satisfecho con algo que el medico o enfermero este haciendo, o en el caso de que desea aportar al cuidado de su familiar, podra crear sugerencias, vinculandolas al dni de su familiar, para que el medico las vea y tenga en cuenta al cuidar de su paciente.{" "}
                 </p>
                 <svg
                   className="shrink-0"
@@ -277,7 +290,7 @@ export default function Ondas() {
                 </svg>
               </div>
             </section>
-            <section className="px-64 py-64">
+            <section className="px-32 py-32">
               <div className="flex gap-x-64">
                 <svg
                   className="shrink-0"
@@ -319,17 +332,14 @@ export default function Ondas() {
                 </svg>
 
 
+
+
                 <p className="shrink text-right text-3xl font-thin text-white">
-                  Ya con los distintos usuarios adentro de la pagina de la
-                  lista, el usuario líder o creador de la lista podra generar y
-                  escribir distintas actividades , agregar informacion
-                  medicinal, (ejemplo: tomar tal pastilla a la hora --:--). u
-                  otras notas que se le puedan agregar al panel. Estas notas se
-                  pueden modificar en cualquier momento.
+                En cuanto a la creacion de actividades, el medico podra acceder a la pagina en la cual se crean las actividades y al completar con los datos que requiere una actividad o evento, podra ingresarlas a la base de datos y guardarlo, para luego ser visualizadas en la pagina del panel de actividades.
                 </p>
               </div>
             </section>
-            <section className="mt-72 px-8 py-8 text-white">
+            <section className="mt-44 px-8 py-0 text-white">
               <div className="container mx-auto flex flex-wrap justify-center">
                 {/* Columna 1 */}
                 <div className="mb-8 flex w-full items-start px-4 sm:w-1/2 lg:w-1/3">
@@ -337,7 +347,7 @@ export default function Ondas() {
                     <h2 className="mb-4 text-2xl font-bold ">
                       Como contactarnos?
                     </h2>
-                    <p className="text-justify px-12">
+                    <p className="text-justify-center px-12">
                       Contactate o mándanos un correo con la información que nos
                       quieras agregar, puede ser una reseña o alguna queja.
                     </p>
@@ -354,6 +364,8 @@ export default function Ondas() {
                           fill="#E1E1E1"
                         />
                       </svg>
+
+
 
 
                       <p className="py-2 px-2">FamilyLink@gmail.com</p>
@@ -373,10 +385,14 @@ export default function Ondas() {
                       </svg>
 
 
+
+
                       <p className="py-2 px-2">+54 9 11 6500-7132</p>
                     </div>
                   </div>
                 </div>
+
+
 
 
                 {/* Columna 2 */}
@@ -398,6 +414,8 @@ export default function Ondas() {
                       </svg>
 
 
+
+
                       <p className="py-2 px-2">Familylink_2023</p>
                     </div>
                     <div className="flex py-3">
@@ -413,6 +431,8 @@ export default function Ondas() {
                           fill="white"
                         />
                       </svg>
+
+
 
 
                       <p className="py-2 px-2">Familylink</p>
@@ -434,10 +454,14 @@ export default function Ondas() {
                       </svg>
 
 
+
+
                       <p className="py-2 px-2">Familylink</p>
                     </div>
                   </div>
                 </div>
+
+
 
 
                 {/* Columna 3 */}
@@ -457,6 +481,8 @@ export default function Ondas() {
                           fill="white"
                         />
                       </svg>
+
+
 
 
                       <p className="py-2 px-2">En el domicilio</p>
@@ -486,6 +512,12 @@ export default function Ondas() {
     </div>
   );
 }
+
+
+
+
+
+
 
 
 

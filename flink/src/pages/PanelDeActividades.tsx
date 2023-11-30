@@ -31,7 +31,7 @@ const Navbar = () => {
           height="24"
           stroke="white"
           stroke-width="2"
-          stroke-linecap="round"
+          strokeLinecap="round"
           stroke-linejoin="round"
         >
           <line x1="3" y1="12" x2="21" y2="12" />
@@ -408,18 +408,17 @@ const PanelActs = () => {
                     >
                       {/* Detalles del evento */}
                       <div className="md:mr-4 md:w-1/6">
-                        <strong>Hora:</strong> {evento.hora}
+                        <strong>Fecha:</strong> {evento.fecha}
+                        <br />
+                        <strong>Hora:</strong> {evento.hora} 
                       </div>
                       <div className="md:mr-4 md:w-1/6">
-                        <strong>Fecha:</strong> {evento.fecha}
+                        <strong>Nombre:</strong> {evento.nombre}
                       </div>
                       <div className="grid-cols w-1/6">
-                        <strong>Nombre:</strong> {evento.nombre}
-                        <br />
-                        <strong>Tipo:</strong> {evento.tipo}
-                        <br />
+                        <strong>Tipo: <br /> </strong> {evento.tipo}
                       </div>
-                      <div className="md:mr-4 md:w-1/6">
+                      <div className="md:mr-4 md:w-1/2">
                         <strong>Descripción:</strong> {evento.descripcion}
                       </div>
                     </li>

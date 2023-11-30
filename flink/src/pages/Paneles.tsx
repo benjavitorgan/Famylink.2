@@ -363,19 +363,19 @@ const NuevaActividad = () => {
                 {/* Detalles de la actividad */}
                 <div className="md:mr-4 md:w-1/6">
                   <strong>Hora:</strong> {actividad.hora}
+                  <br />
+                  <strong>Fecha:</strong> {actividad.fecha}
                 </div>
                 <div className="md:mr-4 md:w-1/6">
-                  <strong>Fecha:</strong> {actividad.fecha}
+                  <strong>DNI:</strong> {actividad.dniPaciente}
                 </div>
                 <div className="grid-cols w-1/6">
                   <strong>Nombre:</strong> {actividad.nombre}
                   <br />
-                  <strong>DNI:</strong> {actividad.dniPaciente}
-                  <br />
                   <strong>Tipo:</strong> {actividad.tipo}
                   <br />
                 </div>
-                <div className="md:mr-4 md:w-1/6">
+                <div className="md:mr-4 md:w-1/2">
                   <strong>Descripción:</strong> {actividad.descripcion}
                 </div>
               </li>

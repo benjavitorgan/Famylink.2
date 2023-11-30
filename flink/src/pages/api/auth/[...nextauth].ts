@@ -111,7 +111,7 @@ const authOptions: NextAuthOptions = {
     })
   ],
   pages: {
-    signIn: "/auth",
+    signIn: "/[...nextauth]",
   },
   session: {
     strategy: "jwt",
